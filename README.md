@@ -1,6 +1,6 @@
 # Snake Demo
 
-## Creating using the DOMQuery library.
+## Created using the DOMQuery library.
 
 ### To get started:
 
