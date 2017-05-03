@@ -6,4 +6,6 @@
 
 Simply download the DOMQuery repository and open the snake.html file in your browser.
 
-For more information about DOMQuery, visit the README in the root repository.
+See the following repository for more information on DOMQuery.
+
+[DOMQuery Github](https://github.com/madnivek/DOMQuery)
