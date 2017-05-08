@@ -17,9 +17,16 @@ class Board {
 
   addRandomApples(num){
     for(let i = 0; i < num; i ++){
-      const posX = Math.floor(Math.random() * this.size);
-      const posY = Math.floor(Math.random() * this.size);
-      this.addToCell(posX, posY, "apple");
+      let posX = Math.floor(Math.random() * this.size);
+      let posY = Math.floor(Math.random() * this.size);
+      while(this.grid[posX][posY] !== "apple"){
+        if(this.grid[posX][posY] === null){
+          this.addToCell(posX, posY, "apple");
+        } else {
+          posX = Math.floor(Math.random() * this.size);
+          posY = Math.floor(Math.random() * this.size);          
+        }
+      }
     }
   }
 

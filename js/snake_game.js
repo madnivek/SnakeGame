@@ -8,8 +8,9 @@ class SnakeGame {
     this.board.generateBoard();
     this.snake = new Snake(this.board);
     this.board.addRandomApples(3);
+    this.score = 0;
     this.moveSnakeAndRender = this.moveSnakeAndRender.bind(this);
-    setInterval( this.moveSnakeAndRender, 100);
+    setInterval( this.moveSnakeAndRender, 75);
     window.addEventListener('keydown', this.handleKeyPress.bind(this));
   }
 
@@ -37,9 +38,13 @@ class SnakeGame {
   moveSnakeAndRender(){
     this.snake.move();
     this.renderBoard();
+    this.score = (this.snake.segments.length * 100) - 100;
   }
 
   renderBoard(){
+
+    const score = $l('#score').html(`Score: ${this.score}`);
+
     this.el.empty();
     const $grid_ul = $l(document.createElement('ul'));
     $grid_ul.addClass("snake-grid");

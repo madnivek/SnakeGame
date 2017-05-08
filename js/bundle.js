@@ -74,8 +74,8 @@
 class Snake {
   constructor(board){
     this.board = board;
-    this.length = 1;
     this.direction = "N";
+    this.score = 0;
     this.headPos = [Math.floor(this.board.size/2), Math.floor(this.board.size/2)];
     this.segments = [this.headPos];
     this.board.grid[this.headPos[0]][this.headPos[1]] = "snake";
@@ -83,24 +83,62 @@ class Snake {
   }
 
   move(){
-    const tailPos = this.segments.pop();
-    this.board.grid[tailPos[0]][tailPos[1]] = null;
     this.headPos = this.addCoords(this.headPos, this.ords[this.direction]);
-    this.board.grid[this.headPos[0]][this.headPos[1]] = "snake";
+
+    if(this.checkCollisions(this.headPos)){
+      this.segments.forEach( pos => {
+        this.board.grid[pos[0]][pos[1]] = null;
+      });
+      this.segments = [this.headPos];
+    }
+
+    if(!this.checkAteApple(this.headPos)){
+      const tailPos = this.segments.pop();
+      this.board.grid[tailPos[0]][tailPos[1]] = null;
+    } else {
+      this.board.addRandomApples(1);
+    }
     this.segments.unshift(this.headPos);
+    this.segments.forEach( pos => {
+      this.board.grid[pos[0]][pos[1]] = "snake";
+    });
+
+    this.score = (this.segments.length * 100) - 100;
   }
 
   turn(newDirection){
-    if(newDirection !== this.direction){
-      this.direction = newDirection;
+    if(newDirection === 'N' && this.direction === 'S'){
+      return;
+    } else if (newDirection === 'E' && this.direction === 'W'){
+      return;
     }
+    this.direction = newDirection;
   }
 
   addCoords(pos1, pos2){
-    const newCoord = [pos1[0] + pos2[0],  pos1[1] + pos2[1]];
-    return newCoord;
+    let newY = pos1[0] + pos2[0];
+    if (newY > this.board.size - 1){
+      newY = 0;
+    } else if (newY < 0){
+      newY = this.board.size - 1;
+    }
+
+    let newX = pos1[1] + pos2[1];
+    if (newX > this.board.size - 1){
+      newX = 0;
+    } else if (newX < 0){
+      newX = this.board.size - 1;
+    }
+    return [newY,  newX];
   }
 
+  checkAteApple(pos){
+    return this.board.grid[pos[0]][pos[1]] === "apple";
+  }
+
+  checkCollisions(pos){
+    return this.board.grid[pos[0]][pos[1]] === "snake";
+  }
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (Snake);
@@ -123,8 +161,9 @@ class SnakeGame {
     this.board.generateBoard();
     this.snake = new __WEBPACK_IMPORTED_MODULE_1__snake_js__["a" /* default */](this.board);
     this.board.addRandomApples(3);
+    this.score = 0;
     this.moveSnakeAndRender = this.moveSnakeAndRender.bind(this);
-    setInterval( this.moveSnakeAndRender, 100);
+    setInterval( this.moveSnakeAndRender, 75);
     window.addEventListener('keydown', this.handleKeyPress.bind(this));
   }
 
@@ -152,9 +191,13 @@ class SnakeGame {
   moveSnakeAndRender(){
     this.snake.move();
     this.renderBoard();
+    this.score = (this.snake.segments.length * 100) - 100;
   }
 
   renderBoard(){
+
+    const score = $l('#score').html(`Score: ${this.score}`);
+
     this.el.empty();
     const $grid_ul = $l(document.createElement('ul'));
     $grid_ul.addClass("snake-grid");
@@ -207,9 +250,16 @@ class Board {
 
   addRandomApples(num){
     for(let i = 0; i < num; i ++){
-      const posX = Math.floor(Math.random() * this.size);
-      const posY = Math.floor(Math.random() * this.size);
-      this.addToCell(posX, posY, "apple");
+      let posX = Math.floor(Math.random() * this.size);
+      let posY = Math.floor(Math.random() * this.size);
+      while(this.grid[posX][posY] !== "apple"){
+        if(this.grid[posX][posY] === null){
+          this.addToCell(posX, posY, "apple");
+        } else {
+          posX = Math.floor(Math.random() * this.size);
+          posY = Math.floor(Math.random() * this.size);          
+        }
+      }
     }
   }
 

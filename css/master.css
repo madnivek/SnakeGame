@@ -35,3 +35,26 @@ ul {
 .snake {
   background: green;
 }
+
+#score {
+  text-align: center;
+}
+
+.instructions {
+  margin: 0 auto;
+  width: 400px;
+  margin-top: 60px;
+  line-height: 20px;
+  text-align: justify;
+  list-style: square;
+  list-style-position: inside;
+}
+
+.instructions h2{
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.instructions li{
+  padding-bottom:5px;
+}
