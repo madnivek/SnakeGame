@@ -42,8 +42,7 @@ class SnakeGame {
   }
 
   renderBoard(){
-
-    const score = $l('#score').html(`Score: ${this.score}`);
+    // const score = $l('#score').html(`Score: ${this.score}`);
     this.el.empty();
     this.board.grid.forEach( row => {
       const $row_ul = $l(document.createElement('ul'));
