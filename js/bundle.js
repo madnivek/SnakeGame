@@ -195,7 +195,7 @@ class SnakeGame {
   }
 
   renderBoard(){
-    // const score = $l('#score').html(`Score: ${this.score}`);
+    $l('#score').html(`Score: ${this.score}`);
     this.el.empty();
     this.board.grid.forEach( row => {
       const $row_ul = $l(document.createElement('ul'));
@@ -203,7 +203,6 @@ class SnakeGame {
       row.forEach( cell => {
         const $li = $l(document.createElement('li'));
         $li.addClass("grid-cell");
-
         if(cell === "snake") {
           $li.addClass("snake");
         } else if(cell === "apple") {
@@ -213,35 +212,7 @@ class SnakeGame {
       });
       this.el.append($row_ul);
     });
-    console.log(this.el.elArray.length)
   }
-
-  // createBoard(){
-  //
-  //   const score = $l('#score').html(`Score: ${this.score}`);
-  //
-  //   this.el.empty();
-  //   const $grid_ul = $l(document.createElement('ul'));
-  //   $grid_ul.addClass("snake-grid");
-  //   this.board.grid.forEach( row => {
-  //     const $row_ul = $l(document.createElement('ul'));
-  //     $row_ul.addClass("grid-row");
-  //     row.forEach( cell => {
-  //       const $li = $l(document.createElement('li'));
-  //       $li.addClass("grid-cell");
-  //
-  //       if(cell === "snake") {
-  //         $li.addClass("snake");
-  //       } else if(cell === "apple") {
-  //         $li.addClass("apple");
-  //       }
-  //
-  //       $row_ul.append($li);
-  //     });
-  //     $grid_ul.append($row_ul);
-  //   });
-  //   this.el.append($grid_ul);
-  // }
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (SnakeGame);
