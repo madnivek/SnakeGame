@@ -164,7 +164,7 @@ class SnakeGame {
     this.score = 0;
     this.moveSnakeAndRender = this.moveSnakeAndRender.bind(this);
     setInterval( this.moveSnakeAndRender, 75);
-    window.addEventListener('keydown', this.handleKeyPress.bind(this));
+    $l('body').on('keydown', this.handleKeyPress.bind(this));
   }
 
   handleKeyPress(e){
