@@ -1,14 +1,13 @@
 # Snake Demo
-
 ## Created using the DOMQuery library.
 
 [Live Game](http://kevin-dam.co/SnakeGame)
 
 [DOMQuery Github](https://github.com/madnivek/DOMQuery)
 
-DOMQuery is a light-weight DOM manipulation library that enables easy DOM manipulation, traversal, event handling, and AJAX requests.
-
 This Snake game uses DOMQuery to render HTML elements that form a snake grid and apply class attributes to these elements. These class elements are then used to color the individual cells based on where the Snake or Apples are located.
+
+#### Core Components:
 
 `renderBoard` method:
 
@@ -40,7 +39,7 @@ renderBoard(){
 }
 ```
 
-Additionally, event handling is added to the HTML document object using `on`.
+Event handling is added to the HTML document object using `on`.
 
 ```javascript
   constructor(){
@@ -69,3 +68,9 @@ Additionally, event handling is added to the HTML document object using `on`.
     }
   }
 ```
+
+Functions that I would like to add to DOMQuery:
+
+* Add the ability to create DOM elements by passing in a HTML string
+* Add specific selectors such as `first`, `last`, `nth-child`, etc...
+* Add a `filter` function that will allow filtering of HTML elements by a specific selector
