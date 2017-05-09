@@ -68,9 +68,3 @@ Event handling is added to the HTML document object using `on`.
     }
   }
 ```
-
-Functions that I would like to add to DOMQuery:
-
-* Add the ability to create DOM elements by passing in a HTML string
-* Add specific selectors such as `first`, `last`, `nth-child`, etc...
-* Add a `filter` function that will allow filtering of HTML elements by a specific selector
