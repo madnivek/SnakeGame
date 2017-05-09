@@ -6,7 +6,7 @@
 
 [DOMQuery Github](https://github.com/madnivek/DOMQuery)
 
-DOMQuery is a light-weight DOM manipulation library that enables easy DOM manipulation, traveral, event handling, and AJAX requests.
+DOMQuery is a light-weight DOM manipulation library that enables easy DOM manipulation, traversal, event handling, and AJAX requests.
 
 This Snake game uses DOMQuery to render HTML elements that form a snake grid and apply class attributes to these elements. These class elements are then used to color the individual cells based on where the Snake or Apples are located.
 
